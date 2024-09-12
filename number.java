@@ -2,7 +2,7 @@ Public class login
 {
 	public static void main()
 	{
-		int i = 0;
+		int i = 12;
 		
 		for (i=0;i<==25;i++
 
