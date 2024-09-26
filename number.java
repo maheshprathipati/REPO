@@ -12,4 +12,4 @@ Public class login
 	}
 }
 
-testing the auto builprocess from jenkins
+testing the auto builprocess from jenkins repo to git through poll scm process
