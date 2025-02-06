@@ -7,11 +7,18 @@ pipeline {
        
     }
     stages {
+        stage('Check File Existence') {
+            steps {
+               bat 'dir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\test2\\target'
+            }
+        }
+        
         stage('DOCKER build'){
             steps{
                 bat "docker build -t  ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                }
+               
             }
+        }
 
         
         stage('DOCKER login'){
