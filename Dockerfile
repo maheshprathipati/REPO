@@ -7,7 +7,7 @@ RUN apt-get update \
     && rm -rf apache-tomcat-11.0.2.tar.gz \
     && mv apache-tomcat-11.0.2 /usr/local/tomcat/ \
     && rm -rf /var/lib/apt/lists/*
-COPY Gamutkart/target/gamutkart.war /usr/local/tomcat/webapps/
+COPY test2/target/gamutkart.war /usr/local/tomcat/webapps/
 EXPOSE 8082
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
 
