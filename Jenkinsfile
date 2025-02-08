@@ -63,11 +63,13 @@ pipeline {
 }
 
  post {
+        always {
+            echo 'Pipeline finished'
+        }
         success {
-            echo "Docker image successfully built and pushed: ${DOCKER_IMAGE}:${DOCKER_TAG}"
-        
+            echo 'Deployment successful!'
+        }
         failure {
-            echo "Pipeline failed! Check logs for errors."
+            echo 'Deployment failed!'
         }
     }
-}
