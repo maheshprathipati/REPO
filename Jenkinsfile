@@ -1,12 +1,35 @@
 pipeline {
     agent any
-     
-      environment {
+     tools {
+      maven 'Apache Maven 3.8.8'
+    }
+           
+     environment {
         DOCKER_IMAGE = 'maheshprathipati/gamutkart1'
         DOCKER_TAG = 'latest'
        
     }
     stages {
+        stage("Git Checkout") {
+            steps {
+                
+                git branch: 'main', credentialsId: 'gitcredentials', url: 'https://github.com/maheshprathipati/REPO.git'
+            }
+        }
+        stage("Maven Build") {
+            steps {
+                bat "mvn clean install"
+            }
+        }
+        stage("Maven code deploy in tomcat") {
+            steps {
+                 bat '''
+                 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ^
+                 C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\test2\\target\\gamutkart.war ^
+                 tomcat@192.168.232.243:/home/tomcat/apache-tomcat-11.0.2/webapps/
+                 '''
+            }
+        }
         stage('Check File Existence') {
             steps {
                bat 'dir C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\test2\\target'
