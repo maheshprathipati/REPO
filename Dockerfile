@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y openjdk-11-jdk \
     && apt-get install -y maven \
@@ -6,11 +7,13 @@ RUN apt-get update \
     && tar -vxzf apache-tomcat-11.0.2.tar.gz \
     && rm -rf apache-tomcat-11.0.2.tar.gz \
     && mv apache-tomcat-11.0.2 /usr/local/tomcat/ \
+    && chmod +x /usr/local/tomcat/bin/*.sh \
+    && mkdir -p /usr/local/tomcat/webapps \
     && rm -rf /var/lib/apt/lists/*
 COPY ./target/gamutkart.war /usr/local/tomcat/webapps/
 
 EXPOSE 8082
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh", "run"]
 
 
 
