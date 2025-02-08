@@ -13,7 +13,7 @@ RUN apt-get update \
 COPY ./target/gamutkart.war /usr/local/tomcat/webapps/
 
 EXPOSE 8082
-ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh", "run"]
+ENTRYPOINT ["java", "--enable-native-access=ALL-UNNAMED", "-jar", "/usr/local/tomcat/webapps/gamutkart.war"]
 
 
 
