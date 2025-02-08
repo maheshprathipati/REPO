@@ -24,7 +24,7 @@ pipeline {
         stage("Maven code deploy in tomcat") {
             steps {
                  bat '''
-                 scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ^
+                 scp -P 3333 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ^
                  C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\test2\\target\\gamutkart.war ^
                  tomcat@192.168.232.243:/home/tomcat/apache-tomcat-11.0.2/webapps/
                  '''
