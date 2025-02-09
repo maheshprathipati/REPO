@@ -11,6 +11,7 @@ RUN apt-get update \
     && mkdir -p /usr/local/tomcat/webapps \
     && rm -rf /var/lib/apt/lists/*
 COPY ./target/gamutkart.war /usr/local/tomcat/webapps/
+COPY Dockerfile /usr/local/tomcat/
 
 EXPOSE 8082
 ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh", "run"]
